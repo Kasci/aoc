@@ -1,4 +1,5 @@
 import io 
+import re
 
 def read_lines(file):
     A = []
@@ -13,3 +14,7 @@ def read_lines(file):
 def read_int_lines(file):
     A = read_lines(file)
     return [int(a) for a in A]
+
+def read_match(file, pattern):
+    A = read_lines(file)
+    return [re.match(pattern,a).groups() for a in A]
