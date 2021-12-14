@@ -10,18 +10,20 @@ debug = True
 
 file = "sample.txt" if debug else "input.txt"
 
-A = []
-
 def read_input():
     return u.read_lines(file)
 
 def part1():
     A = read_input()
-    raise Exception("Not implemented")
+    k = 0
+    print("Part 1:",k)
+    raise Exception("Not implemented")  
 
 def part2():
     A = read_input()
-    raise Exception("Not implemented")
+    k = 0
+    print("Part 2:",k)
+    raise Exception("Not implemented")  
 
 part1()
 part2()
