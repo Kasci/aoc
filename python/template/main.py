@@ -26,4 +26,4 @@ def part2():
     raise Exception("Not implemented")  
 
 part1()
-part2()
+#part2()
