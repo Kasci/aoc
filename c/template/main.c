@@ -8,18 +8,20 @@ static char *FILE_NAME = "input.txt";
 
 
 void part1() {
-    char **in = readInput(FILE_NAME);
-    printf("Hello World\n");
+    ARR_STRING* in = readInput(FILE_NAME);
+    printf("%d\n",in->length);
     int16_t k = 0;
     printf("Part 1: %d\n", k);
+    freeInput(in);
 }
 
 void part2() {
     assert(0);
-    char **in = readInput(FILE_NAME);
+    ARR_STRING* in = readInput(FILE_NAME);
     printf("Hello World\n");
     int16_t k = 0;
     printf("Part 2: %d\n", k);
+    freeInput(in);
 }
 
 int main(void) {

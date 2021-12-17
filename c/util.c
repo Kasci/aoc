@@ -12,7 +12,9 @@ char* trim(char* input) {
     return input;
 }
 
-char** readInput(char* file) {
+ARR_STRING* readInput(char* file) {
+    ARR_STRING* arr = malloc(sizeof(ARR_STRING));
+
     FILE *file_ptr = fopen(file, "r");
     if (file_ptr == NULL) {
         perror("Error opening file");
@@ -31,13 +33,32 @@ char** readInput(char* file) {
         i++;
     } 
     fclose(file_ptr);
-    return input;
+    arr->strings = input;
+    arr->length = i;
+    return arr;
 }
 
-void freeInput(char** input) {
-    int16_t size = sizeof(input)/sizeof(char *);
-    for (int16_t i = 0; i < size; i++) {
-        free(input[i]);
+ARR_INTEGER* readIntInput(char* file) {
+    ARR_INTEGER* intInput = malloc(sizeof(ARR_INTEGER));
+    ARR_STRING* input = readInput(file);
+
+    intInput->length = input->length;
+    intInput->integers = malloc(input->length * sizeof(int16_t));
+    for (int16_t i = 0; i < input->length; i++) {
+        intInput->integers[i] = atoi(input->strings[i]);
     }
+    return intInput;
+}
+
+void freeInput(ARR_STRING* input) {
+    for (int16_t i = 0; i < input->length; i++) {
+        free(input->strings[i]);
+    }
+    free(input->strings);
+    free(input);
+}
+
+void freeIntInput(ARR_INTEGER* input) {
+    free(input->integers);
     free(input);
 }
