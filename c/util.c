@@ -38,16 +38,26 @@ ARR_STRING* readInput(char* file) {
     return arr;
 }
 
-ARR_MUL_STRING* readInputDelimiter(char* file, char delimiter) {
-    ARR_MUL_STRING* mulInput = malloc(sizeof(ARR_MUL_STRING));
+ARR_MUL_STRING* readInputDelim(char* file, char* delimiters) {
+    ARR_MUL_STRING* mulInput = (ARR_MUL_STRING*) malloc(sizeof(ARR_MUL_STRING));
     ARR_STRING* input = readInput(file);
     
     mulInput->length = input->length;
+    mulInput->strings = (ARR_STRING*) malloc(input->length * sizeof(ARR_STRING));
     for (int16_t i = 0; i < input->length; i++) {
-        ARR_STRING* line = malloc(sizeof(ARR_STRING));
-
-
-        freeArrString(line);
+        ARR_STRING line;
+        line.strings = (char**) malloc(0);
+        int16_t j = 0;
+        char* point = strtok(input->strings[i], delimiters);
+        while (point != NULL) {
+            line.strings = (char**) realloc(line.strings, (j+1)*sizeof(char*));
+            line.strings[j] = (char*) malloc(strlen(point));
+            strcpy(line.strings[j], point);
+            point = strtok(NULL, delimiters);
+            j++;
+        }
+        line.length = j;
+        mulInput->strings[i] = line;
     }
 
     freeArrString(input);
@@ -55,11 +65,11 @@ ARR_MUL_STRING* readInputDelimiter(char* file, char delimiter) {
 }
 
 ARR_INTEGER* readIntInput(char* file) {
-    ARR_INTEGER* intInput = malloc(sizeof(ARR_INTEGER));
+    ARR_INTEGER* intInput = (ARR_INTEGER*) malloc(sizeof(ARR_INTEGER));
     ARR_STRING* input = readInput(file);
 
     intInput->length = input->length;
-    intInput->integers = malloc(input->length * sizeof(int16_t));
+    intInput->integers = (int16_t*) malloc(input->length * sizeof(int16_t));
     for (int16_t i = 0; i < input->length; i++) {
         intInput->integers[i] = atoi(input->strings[i]);
     }
@@ -78,5 +88,20 @@ void freeArrString(ARR_STRING* input) {
 
 void freeArrInteger(ARR_INTEGER* input) {
     free(input->integers);
+    free(input);
+}
+
+void freeArrStringDirect(ARR_STRING input) {
+    for (int16_t i = 0; i < input.length; i++) {
+        free(input.strings[i]);
+    }
+    free(input.strings);
+}
+
+void freeArrMulString(ARR_MUL_STRING* input) {
+    for (int16_t i = 0; i < input->length; i++) {
+        freeArrStringDirect(input->strings[i]);
+    }
+    free(input->strings);
     free(input);
 }

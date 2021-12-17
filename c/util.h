@@ -27,7 +27,7 @@ typedef struct strMulArr {
 ARR_STRING* readInput(char* file);
 void freeArrString(ARR_STRING* input);
 
-ARR_MUL_STRING* readInputDelim(char* file, char delimiter);
+ARR_MUL_STRING* readInputDelim(char* file, char* delimiters);
 void freeArrMulString(ARR_MUL_STRING* input);
 
 ARR_INTEGER* readIntInput(char* file);
