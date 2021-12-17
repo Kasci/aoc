@@ -38,6 +38,22 @@ ARR_STRING* readInput(char* file) {
     return arr;
 }
 
+ARR_MUL_STRING* readInputDelimiter(char* file, char delimiter) {
+    ARR_MUL_STRING* mulInput = malloc(sizeof(ARR_MUL_STRING));
+    ARR_STRING* input = readInput(file);
+    
+    mulInput->length = input->length;
+    for (int16_t i = 0; i < input->length; i++) {
+        ARR_STRING* line = malloc(sizeof(ARR_STRING));
+
+
+        freeArrString(line);
+    }
+
+    freeArrString(input);
+    return mulInput;
+}
+
 ARR_INTEGER* readIntInput(char* file) {
     ARR_INTEGER* intInput = malloc(sizeof(ARR_INTEGER));
     ARR_STRING* input = readInput(file);
@@ -47,10 +63,12 @@ ARR_INTEGER* readIntInput(char* file) {
     for (int16_t i = 0; i < input->length; i++) {
         intInput->integers[i] = atoi(input->strings[i]);
     }
+
+    freeArrString(input);
     return intInput;
 }
 
-void freeInput(ARR_STRING* input) {
+void freeArrString(ARR_STRING* input) {
     for (int16_t i = 0; i < input->length; i++) {
         free(input->strings[i]);
     }
@@ -58,7 +76,7 @@ void freeInput(ARR_STRING* input) {
     free(input);
 }
 
-void freeIntInput(ARR_INTEGER* input) {
+void freeArrInteger(ARR_INTEGER* input) {
     free(input->integers);
     free(input);
 }

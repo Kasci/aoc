@@ -19,10 +19,18 @@ typedef struct strArr {
     int16_t length;
 } ARR_STRING;
 
+typedef struct strMulArr {
+    ARR_STRING* strings;
+    int16_t length;
+} ARR_MUL_STRING;
+
 ARR_STRING* readInput(char* file);
-void freeInput(ARR_STRING* input);
+void freeArrString(ARR_STRING* input);
+
+ARR_MUL_STRING* readInputDelim(char* file, char delimiter);
+void freeArrMulString(ARR_MUL_STRING* input);
 
 ARR_INTEGER* readIntInput(char* file);
-void freeIntInput(ARR_INTEGER* input);
+void freeArrInteger(ARR_INTEGER* input);
 
 #endif //_AOC_UTIL_H_

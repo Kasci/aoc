@@ -16,7 +16,7 @@ void part1() {
         }
     }
     printf("Part 1: %d\n", k);
-    freeIntInput(in);
+    freeArrInteger(in);
 }
 
 void part2() {
@@ -35,7 +35,7 @@ void part2() {
     }
     printf("Part 2: %d\n", k);
     free(diff);
-    freeIntInput(in);
+    freeArrInteger(in);
 }
 
 int main(void) {
