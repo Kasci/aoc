@@ -44,13 +44,13 @@ void append(int64_t **map, int64_t* size, int64_t x, int64_t y) {
 
 void printMap(int64_t **map, int64_t size) {
     for (int64_t i=0; i<size; i++) {
-        printf("M %d %d %d\n",map[i][0], map[i][1], map[i][2]);
+        printf("M %ld %ld %ld\n",map[i][0], map[i][1], map[i][2]);
     }
     printf("\n");
 }
 
 int64_t getCount(int16_t** coord, int64_t length, bool filter) {
-    int64_t **map = (int64_t *) malloc(500000*sizeof(int64_t*));
+    int64_t **map = malloc(500000*sizeof(int64_t*));
     int64_t size = 0;
 
     for (int64_t i = 0; i < length; i++) {
@@ -66,7 +66,7 @@ int64_t getCount(int16_t** coord, int64_t length, bool filter) {
         append(map, &size, coord[i][0]+x, coord[i][1]+y);
     }
     
-    int16_t count = 0;
+    int64_t count = 0;
     for (int64_t i = 0; i < size; i++) {
         if (map[i][2] > 1) count++;
     }
