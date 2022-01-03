@@ -21,11 +21,11 @@ ARR_STRING* readInput(char* file) {
         exit(1);
     }
     
-    char buf[255];
+    char buf[5000];
     char **input = (char **) malloc(0);
     int16_t i = 0;
     
-    while(fgets(buf, 255, (FILE*)file_ptr) != NULL) {
+    while(fgets(buf, 5000, (FILE*)file_ptr) != NULL) {
         strcpy(buf, trim(buf));
         input = (char **) realloc(input, (i+1)*sizeof(char *));
         input[i] = (char *) malloc(strlen(buf));
