@@ -9,11 +9,6 @@
 #include <stdint.h>
 #include <assert.h>
 
-typedef struct intArr {
-    int16_t* integers;
-    int16_t length;
-} ARR_INTEGER;
-
 typedef struct strArr {
     char** strings;
     int16_t length;
@@ -24,6 +19,16 @@ typedef struct strMulArr {
     int16_t length;
 } ARR_MUL_STRING;
 
+typedef struct intArr {
+    int16_t* integers;
+    int16_t length;
+} ARR_INTEGER;
+
+typedef struct intMulArr {
+    ARR_INTEGER* integers;
+    int16_t length;
+} ARR_MUL_INTEGERS;
+
 ARR_STRING* readInput(char* file);
 void freeArrString(ARR_STRING* input);
 
@@ -32,5 +37,8 @@ void freeArrMulString(ARR_MUL_STRING* input);
 
 ARR_INTEGER* readIntInput(char* file);
 void freeArrInteger(ARR_INTEGER* input);
+
+ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters);
+void freeArrMulInteger(ARR_MUL_INTEGERS* input);
 
 #endif //_AOC_UTIL_H_

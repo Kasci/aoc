@@ -88,6 +88,31 @@ ARR_INTEGER* readIntInput(char* file) {
     return intInput;
 }
 
+ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters) {
+    ARR_MUL_INTEGERS* mulInput = (ARR_MUL_INTEGERS*) malloc(sizeof(ARR_MUL_INTEGERS));
+    ARR_STRING* input = readInput(file);
+    
+    mulInput->length = input->length;
+    mulInput->integers = (ARR_INTEGER*) malloc(input->length * sizeof(ARR_INTEGER));
+    for (int16_t i = 0; i < input->length; i++) {
+        ARR_INTEGER line;
+        line.integers = (int16_t*) malloc(0);
+        int16_t j = 0;
+        char* point = strtok(input->strings[i], delimiters);
+        while (point != NULL) {
+            line.integers = (int16_t*) realloc(line.integers, (j+1)*sizeof(int));
+            line.integers[j] = atoi(point);
+            point = strtok(NULL, delimiters);
+            j++;
+        }
+        line.length = j;
+        mulInput->integers[i] = line;
+    }
+
+    freeArrString(input);
+    return mulInput;
+}
+
 void freeArrString(ARR_STRING* input) {
     for (int16_t i = 0; i < input->length; i++) {
         free(input->strings[i]);
@@ -113,5 +138,13 @@ void freeArrMulString(ARR_MUL_STRING* input) {
         freeArrStringDirect(input->strings[i]);
     }
     free(input->strings);
+    free(input);
+}
+
+void freeArrMulInteger(ARR_MUL_INTEGERS* input) {
+    for (int16_t i = 0; i < input->length; i++) {
+        free(input->integers[i].integers);
+    }
+    free(input->integers);
     free(input);
 }
