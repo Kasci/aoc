@@ -29,6 +29,18 @@ typedef struct intMulArr {
     int16_t length;
 } ARR_MUL_INTEGERS;
 
+typedef struct pointObj {
+    int16_t x;
+    int16_t y;
+    int16_t z;
+} POINT;
+
+typedef struct stackObj {
+    int32_t depth;
+    int32_t count;
+    void** items;
+} STACK;
+
 ARR_STRING* readInput(char* file);
 void freeArrString(ARR_STRING* input);
 
@@ -40,5 +52,12 @@ void freeArrInteger(ARR_INTEGER* input);
 
 ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters);
 void freeArrMulInteger(ARR_MUL_INTEGERS* input);
+
+bool comparePoints(POINT a, POINT b);
+
+STACK* initStack(size_t size);
+void pushItemStack(STACK* stack, void* item, size_t size);
+void* popItemStack(STACK* stack, size_t size);
+void freeStack(STACK* stack);
 
 #endif //_AOC_UTIL_H_

@@ -148,3 +148,41 @@ void freeArrMulInteger(ARR_MUL_INTEGERS* input) {
     free(input->integers);
     free(input);
 }
+
+bool comparePoints(POINT a, POINT b) {
+    return a.x == b.x && a.y == b.y && a.z == b.z;
+}
+
+#define DEPTH_INC 32
+
+STACK* initStack(size_t size) {
+    STACK* s = (STACK*) malloc(sizeof(STACK));
+    s->count = 0;
+    s->depth = DEPTH_INC;
+    s->items = (void**) malloc(s->depth * size);
+    return s;
+}
+
+void pushItemStack(STACK* stack, void* item, size_t size) {
+    if (stack->count + 1 >= stack->depth) {
+        stack->depth += DEPTH_INC;
+        stack->items = (void**) realloc(stack->items, stack->depth * size);
+    }
+    memcpy(stack->items[stack->count], item, size);
+    stack->count++;
+}
+
+void* popItemStack(STACK* stack, size_t size) {
+    void* item = stack->items[stack->count];
+    stack->count--;
+    if (stack->count <= stack->depth - DEPTH_INC) {
+        stack->depth -= DEPTH_INC;
+        stack->items = (void**) realloc(stack->items, stack->depth * size);
+    }
+    return item;
+}
+
+void freeStack(STACK* stack) {
+    free(stack->items);
+    free(stack);
+}
