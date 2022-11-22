@@ -12,6 +12,8 @@ char* trim(char* input) {
     return input;
 }
 
+#define LEN 5000
+
 ARR_STRING* readInput(char* file) {
     ARR_STRING* arr = malloc(sizeof(ARR_STRING));
 
@@ -21,15 +23,23 @@ ARR_STRING* readInput(char* file) {
         exit(1);
     }
     
-    char buf[5000];
+    char buf[LEN];
     char **input = (char **) malloc(0);
     int16_t i = 0;
     
-    while(fgets(buf, 5000, (FILE*)file_ptr) != NULL) {
+    while(fgets(buf, LEN, (FILE*)file_ptr) != NULL) {
         strcpy(buf, trim(buf));
         input = (char **) realloc(input, (i+1)*sizeof(char *));
         input[i] = (char *) malloc(strlen(buf));
         strcpy(input[i],buf);
+        while (strlen(buf) == LEN-1) {
+            fgets(buf, LEN, (FILE*)file_ptr);
+            strcpy(buf, trim(buf));
+            input[i] = (char *) realloc(input[i], strlen(input[i]) + strlen(buf) + 1);
+            char* ptr = input[i];
+            ptr += strlen(input[i]);
+            strcpy(ptr, buf);
+        }
         i++;
     } 
     fclose(file_ptr);
