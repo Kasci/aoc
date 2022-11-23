@@ -1,0 +1,5 @@
+b AND c -> a
+d OR e -> b
+d LSHIFT 2 -> c
+e LSHIFT 1 -> d
+25 -> e
