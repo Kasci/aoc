@@ -100,7 +100,7 @@ ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters) {
         int16_t j = 0;
         char* point = strtok(input->strings[i], delimiters);
         while (point != NULL) {
-            line.integers = (int16_t*) realloc(line.integers, (j+1)*sizeof(int));
+            line.integers = (int16_t*) realloc(line.integers, (j+1)*sizeof(int16_t));
             line.integers[j] = atoi(point);
             point = strtok(NULL, delimiters);
             j++;
@@ -110,6 +110,21 @@ ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters) {
     }
 
     freeArrString(input);
+    return mulInput;
+}
+
+ARR_MUL_INTEGERS* initMulIntegers(int16_t arraySize, int16_t listSize) {
+    ARR_MUL_INTEGERS* mulInput = (ARR_MUL_INTEGERS*) malloc(sizeof(ARR_MUL_INTEGERS));
+    mulInput->length = arraySize;
+    mulInput->integers = (ARR_INTEGER*) malloc(arraySize * sizeof(ARR_INTEGER));
+    for (int16_t i = 0; i < arraySize; i++) {
+        mulInput->integers[i].length = listSize;
+        mulInput->integers[i].integers = (int16_t*) malloc(listSize * sizeof(int16_t));
+        for (int16_t j = 0; j < listSize; j++) {
+            mulInput->integers[i].integers[j] = 0;
+        }
+        printf(". %d\n",i);
+    }
     return mulInput;
 }
 

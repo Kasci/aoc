@@ -53,6 +53,8 @@ void freeArrInteger(ARR_INTEGER* input);
 ARR_MUL_INTEGERS* readIntInputDelim(char* file, char* delimiters);
 void freeArrMulInteger(ARR_MUL_INTEGERS* input);
 
+ARR_MUL_INTEGERS* initMulIntegers(int16_t arraySize, int16_t listSize);
+
 bool comparePoints(POINT a, POINT b);
 
 STACK* initStack(size_t size);
