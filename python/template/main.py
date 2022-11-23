@@ -2,6 +2,7 @@
 
 import sys
 sys.path.append("../../")
+sys.path.append("../")
 import util as u
 
 ###############
@@ -17,7 +18,6 @@ def part1():
     A = read_input()
     k = 0
     print("Part 1:",k)
-    raise Exception("Not implemented")  
 
 def part2():
     A = read_input()
