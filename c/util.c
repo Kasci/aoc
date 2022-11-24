@@ -30,7 +30,7 @@ ARR_STRING* readInput(char* file) {
     while(fgets(buf, LEN, (FILE*)file_ptr) != NULL) {
         strcpy(buf, trim(buf));
         input = (char **) realloc(input, (i+1)*sizeof(char *));
-        input[i] = (char *) malloc(strlen(buf));
+        input[i] = (char *) malloc(strlen(buf) + 5);
         strcpy(input[i],buf);
         while (strlen(buf) == LEN-1) {
             fgets(buf, LEN, (FILE*)file_ptr);
