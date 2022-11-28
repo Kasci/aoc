@@ -25,7 +25,7 @@ def path(used, all, ssum, method):
     if (len(valid) == 0):
         return ssum
     else:
-        return method([path(used + [n[1]], all, ssum + int(n[2]), method) for n in valid])
+        return method([path(used + [n[1]], app, ssum + int(n[2]), method) for n in valid])
 
 def read_input():
     return u.read_match(file, "(.*) to (.*) = (.*)")
@@ -37,7 +37,6 @@ def part1():
     print("Part 1:",k)
 
 def part2():
-    A = read_input()
     A = read_input()
     a = set([a[0] for a in A] + [a[1] for a in A])
     k = max([path([x], A, 0, max) for x in a])
