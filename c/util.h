@@ -62,4 +62,6 @@ void pushItemStack(STACK* stack, void* item, size_t size);
 void* popItemStack(STACK* stack, size_t size);
 void freeStack(STACK* stack);
 
+bool isIn(char* val, char** arr, int16_t maxIdx);
+
 #endif //_AOC_UTIL_H_

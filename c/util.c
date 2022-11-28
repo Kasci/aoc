@@ -201,3 +201,10 @@ void freeStack(STACK* stack) {
     free(stack->items);
     free(stack);
 }
+
+bool isIn(char* val, char** arr, int16_t maxIdx) {
+    for (int16_t i = 0; i < maxIdx; i++) {
+        if (!strcmp(val, arr[i])) return true;
+    }
+    return false;
+}
