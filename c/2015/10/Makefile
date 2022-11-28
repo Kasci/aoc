@@ -1,7 +1,7 @@
 CC = gcc
 LPATH = -I ../.. -L ../..
-LIBS = -lm ../../util.a
-STANDARD = --std=c99 -Wall -Werror
+LIBS = -lm -pthread ../../util.a
+STANDARD = --std=c99 
 
 all:
 	${CC} ${STANDARD} ${LPATH} main.c -o main.out ${LIBS} 
