@@ -6,5 +6,8 @@ STANDARD = --std=c99
 all:
 	${CC} ${STANDARD} ${LPATH} main.c -o main.out ${LIBS} 
 
+debug:
+	${CC} -g ${STANDARD} ${LPATH} main.c -o main.out ${LIBS} 
+
 clean:
 	rm *.out
