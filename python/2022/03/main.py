@@ -38,7 +38,6 @@ def read_input():
 def part1():
     A = read_input()
     B = [comp(a[:len(a)//2], a[len(a)//2:]) for a in A]
-    # print(B)
     k = sum(B)
     print("Part 1:",k)
 
