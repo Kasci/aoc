@@ -36,10 +36,7 @@ def point(A, n):
     for s in range(n):
         for i,a in enumerate(A):
             l[i] = step(a, s+1)
-        m = 0
-        for i in range(len(A)):
-            if m < l[i]:
-                m = l[i]
+        m = max(l)
         for i in range(len(A)):
             if l[i] == m:
                 p[i] += 1
