@@ -45,7 +45,6 @@ var
 
 	procedure add(v: longint; var max: m_arr);
 	begin
-(*		writeln('>',v,' ',max[0],' ',max[1],' ',max[2]);*)
 		if v > max[0] then begin
 			max[2] := max[1];
 			max[1] := max[0];
