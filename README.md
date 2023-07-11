@@ -1,6 +1,6 @@
 # Advent of Code
 
-This is the showcase of my solutions for the (https://adventofcode.com/)[AOC].
+This is the showcase of my solutions for the [https://adventofcode.com/](AOC).
 
 Not all of the solutions are best in performance, most of the soluttions are coded to achieve the rapid development times. 
 
