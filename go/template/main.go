@@ -11,6 +11,15 @@ func isDebug() bool {
 	return true
 }
 
+func contain[T comparable](list []T, x T) bool {
+	for _, v := range list {
+		if v == x {
+			return true
+		}
+	}
+	return false
+}
+
 func getInput() []string {
 	name := "./input.txt"
 	if isDebug() {
