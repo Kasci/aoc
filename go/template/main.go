@@ -20,6 +20,35 @@ func contain[T comparable](list []T, x T) bool {
 	return false
 }
 
+func apnd[T comparable](list []T, x T) []T {
+	for _, v := range list {
+		if v == x {
+			return list
+		}
+	}
+	return append(list, x)
+}
+
+func rmv[T comparable](list []T, x T) []T {
+	var ret []T
+	for _, v := range list {
+		if v != x {
+			ret = append(ret, v)
+		}
+	}
+	return ret
+}
+
+func rmv2[T comparable](list [][]T, x T, f func([]T) T) [][]T {
+	var ret [][]T
+	for _, v := range list {
+		if f(v) != x {
+			ret = append(ret, v)
+		}
+	}
+	return ret
+}
+
 func getInput() []string {
 	name := "./input.txt"
 	if isDebug() {
